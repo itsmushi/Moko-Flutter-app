@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class SignInUpButtton extends StatelessWidget {
   final String title;
-  final dynamic Function() onSubmittingForm;
+  final dynamic Function(BuildContext context) onSubmittingForm;
 
   SignInUpButtton({required this.title, required this.onSubmittingForm});
 
@@ -31,7 +31,10 @@ class SignInUpButtton extends StatelessWidget {
             ),
           ),
         ),
-        onPressed: onSubmittingForm,
+        onPressed: () {
+          onSubmittingForm(context);
+        },
+       
       ),
     );
   }

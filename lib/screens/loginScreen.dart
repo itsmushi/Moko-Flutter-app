@@ -6,9 +6,12 @@ import 'package:moko/components/topTitle.dart';
 
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:moko/main.dart';
+import 'package:moko/screens/homeScreen.dart';
+import 'package:moko/screens/signUpScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
+  static String route_name = "login_screen";
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -17,9 +20,10 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
-  onSubmittingForm() {
+  onSubmittingForm(BuildContext context) {
     if (_formkey.currentState!.validate()) {
       print("Validated");
+      Navigator.of(context).pushReplacementNamed(HomeScreen.route_name);
     } else {
       print("Not Validated");
     }
@@ -105,6 +109,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         GestureDetector(
                           onTap: () {
                             print("send to register activity");
+                            Navigator.of(context)
+                                .pushNamed(SignUpScreen.route_name);
                           },
                           child: Text(
                             "Register",
