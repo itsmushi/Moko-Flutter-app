@@ -1,38 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:moko/components/descriptionText.dart';
 import 'package:moko/components/signInUpButtton.dart';
 import 'package:moko/components/topTitle.dart';
+import 'package:moko/screens/loginScreen.dart';
 
-import 'package:form_field_validator/form_field_validator.dart';
-import 'package:moko/main.dart';
-import 'package:moko/screens/homeScreen.dart';
-import 'package:moko/screens/signUpScreen.dart';
+import 'homeScreen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
-  static String route_name = "login_screen";
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
+  static String route_name = "sign_up_screen";
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _SignUpScreenState createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
-  TextEditingController emailController = new TextEditingController();
+   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
-
-  onSubmittingForm(BuildContext context) {
-    if (_formkey.currentState!.validate()) {
-      print("Validated");
-      print(emailController.text);
-      print(passwordController.text);
-      Navigator.of(context).pushReplacementNamed(HomeScreen.route_name);
-    } else {
-      print("Not Validated");
-    }
-  }
+    TextEditingController locationController = new TextEditingController();
 
   bool _isHidden = true;
 
@@ -40,6 +29,18 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       _isHidden = !_isHidden;
     });
+  }
+
+  onSubmittingForm(BuildContext context) {
+    if (_formkey.currentState!.validate()) {
+      print("Validated");
+       print(emailController.text);
+      print(passwordController.text);
+       print(locationController.text);
+      Navigator.of(context).pushReplacementNamed(HomeScreen.route_name);
+    } else {
+      print("Not Validated");
+    }
   }
 
   @override
@@ -50,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           TopTitle(
-            "Login",
+            "Register",
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height / 18,
@@ -59,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
             FontAwesomeIcons.google,
             color: Colors.red,
           ),
-          DescriptionText("or Login with Email"),
+          DescriptionText("or Register with Email"),
           SizedBox(
             height: MediaQuery.of(context).size.height / 1.8,
             width: MediaQuery.of(context).size.width,
@@ -72,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 15),
                       child: TextFormField(
-                        controller: emailController,
+                         controller: emailController,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderRadius:
@@ -92,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.only(
                           left: 15, right: 15, top: 15, bottom: 15),
                       child: TextFormField(
-                        controller: passwordController,
+                         controller: passwordController,
                         obscureText: _isHidden,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
@@ -101,13 +102,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           labelText: 'Password',
                           filled: true,
                           suffix: InkWell(
-                            onTap: _togglePasswordView,
-                            child: Icon(
-                              _isHidden
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                            ),
-                          ),
+                              onTap: _togglePasswordView,
+                              child: Icon(
+                                _isHidden
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              )),
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -117,26 +117,43 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                       ),
                     ),
+                    Padding(
+                      
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 15),
+                      child: TextFormField(
+                         controller: locationController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15))),
+                          labelText: 'Location',
+                          filled: true,
+                        ),
+                        validator: MultiValidator(
+                          [],
+                        ),
+                      ),
+                    ),
                     Container(
                       margin: EdgeInsets.only(top: 20, bottom: 10),
                       child: SignInUpButtton(
-                          title: "Sign In", onSubmittingForm: onSubmittingForm),
+                          title: "Sign Up", onSubmittingForm: onSubmittingForm),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        DescriptionText("Don't have an account?"),
+                        DescriptionText("Have an account?"),
                         SizedBox(
                           width: 10,
                         ),
                         GestureDetector(
                           onTap: () {
-                            print("send to register activity");
                             Navigator.of(context)
-                                .pushNamed(SignUpScreen.route_name);
+                                .pushNamed(LoginScreen.route_name);
                           },
                           child: Text(
-                            "Register",
+                            "Login",
                             style: TextStyle(
                                 color: Color.fromRGBO(55, 55, 55, 1),
                                 fontSize: 15,
