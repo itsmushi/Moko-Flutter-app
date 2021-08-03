@@ -20,13 +20,26 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
+
   onSubmittingForm(BuildContext context) {
     if (_formkey.currentState!.validate()) {
       print("Validated");
+      print(emailController.text);
+      print(passwordController.text);
       Navigator.of(context).pushReplacementNamed(HomeScreen.route_name);
     } else {
       print("Not Validated");
     }
+  }
+
+  bool _isHidden = true;
+
+  void _togglePasswordView() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
   }
 
   @override
@@ -48,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           DescriptionText("or Login with Email"),
           SizedBox(
-            height: MediaQuery.of(context).size.height / 3,
+            height: MediaQuery.of(context).size.height / 1.8,
             width: MediaQuery.of(context).size.width,
             child: SingleChildScrollView(
               child: Form(
@@ -59,6 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 15),
                       child: TextFormField(
+                        controller: emailController,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderRadius:
@@ -78,13 +92,22 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.only(
                           left: 15, right: 15, top: 15, bottom: 15),
                       child: TextFormField(
-                        obscureText: true,
+                        controller: passwordController,
+                        obscureText: _isHidden,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15))),
                           labelText: 'Password',
                           filled: true,
+                          suffix: InkWell(
+                            onTap: _togglePasswordView,
+                            child: Icon(
+                              _isHidden
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                          ),
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -102,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        DescriptionText("or Login with Email"),
+                        DescriptionText("Don't have an account?"),
                         SizedBox(
                           width: 10,
                         ),
