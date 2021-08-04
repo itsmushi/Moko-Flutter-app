@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moko/components/foodImageBox.dart';
 import 'package:moko/components/title2.dart';
+import 'package:moko/modules/homeNavigation/foodImgWithText.dart';
 
 class HomeNavigation extends StatelessWidget {
   @override
@@ -30,7 +31,7 @@ class HomeNavigation extends StatelessWidget {
               const EdgeInsets.only(top: 15, left: 10, right: 10, bottom: 10),
           child: Title2("Nearest Restaurents"),
         ),
-        FoodImageBox("assets/images/sample_food.jpeg"),
+        FoodImgWithText("assets/images/sample_food.jpeg", "burger", "4.5", "15min")
       ],
     );
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moko/modules/homeNavigation.dart';
+import 'package:moko/modules/homeNavigation/homeNavigation.dart';
 import 'package:moko/screens/HomeScreen/topSearch.dart';
 
 class HomeScreen extends StatefulWidget {
