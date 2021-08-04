@@ -6,7 +6,7 @@ import 'package:moko/components/topTitle.dart';
 
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:moko/main.dart';
-import 'package:moko/screens/homeScreen.dart';
+import 'package:moko/screens/HomeScreen/homeScreen.dart';
 import 'package:moko/screens/signUpScreen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -31,6 +31,8 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.of(context).pushReplacementNamed(HomeScreen.route_name);
     } else {
       print("Not Validated");
+
+      Navigator.of(context).pushReplacementNamed(HomeScreen.route_name); //remove this later  its just for dev
     }
   }
 

@@ -6,7 +6,7 @@ import 'package:moko/components/signInUpButtton.dart';
 import 'package:moko/components/topTitle.dart';
 import 'package:moko/screens/loginScreen.dart';
 
-import 'homeScreen.dart';
+import 'HomeScreen/homeScreen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
