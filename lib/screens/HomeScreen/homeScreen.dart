@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moko/modules/homeNavigation/homeNavigation.dart';
-import 'package:moko/screens/HomeScreen/topSearch.dart';
+import 'package:moko/modules/restaurant/restaurantHome.dart';
+import 'package:moko/modules/homeNavigation/topSearch.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,9 +15,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 3;
 
    final List<Widget> _widgetOptions = <Widget>[
-    HomeNavigation(),
-    Text('Search Page',
-        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+    HomeNavigation(),//place of home icon
+    RestaurantHome(), //place of search icon
     Text('Shop Page',
         style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
     Text('user Page',
@@ -36,9 +36,8 @@ class _HomeScreenState extends State<HomeScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          TopSearch(),
-          SizedBox(
-              height: MediaQuery.of(context).size.height / 0.4,
+          SizedBox( //contents of all navigation goes here
+              height: MediaQuery.of(context).size.height * 0.90,
               width: MediaQuery.of(context).size.width,
               child: SingleChildScrollView(
                 child: Column(

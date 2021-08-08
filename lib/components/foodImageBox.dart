@@ -7,13 +7,13 @@ class FoodImageBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
       child: Image.asset(
         img,
         fit: BoxFit.fill,
       ),
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10))),
     );
+
   }
 }

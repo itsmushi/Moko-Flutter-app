@@ -40,7 +40,7 @@ class _TopSearchState extends State<TopSearch> {
                 ),
               ),
             ]),
-        height: MediaQuery.of(context).size.height / 4,
+        height: MediaQuery.of(context).size.height * 0.25,
         width: MediaQuery.of(context).size.width,
       ),
     );

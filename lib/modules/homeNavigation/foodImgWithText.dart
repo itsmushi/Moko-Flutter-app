@@ -14,8 +14,8 @@ class FoodImgWithText extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        FoodImageBox(img),
-        BottomImageDetail(foodName, rateValue, time)
+        SizedBox(height:  MediaQuery.of(context).size.height*0.17,child: FoodImageBox(img)),
+        SizedBox(height: MediaQuery.of(context).size.height*0.05,child: BottomImageDetail(foodName, rateValue, time)),
       ],
     );
   }
