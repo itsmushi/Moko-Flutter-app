@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moko/app_state/userState.dart';
+import 'package:moko/modules/restaurant/restaurantHome/restaurantMenu.dart';
 import 'package:moko/screens/HomeScreen/homeScreen.dart';
 import 'package:moko/screens/loginScreen.dart';
 import 'package:moko/screens/signUpScreen.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
           LoginScreen.route_name: (_) => LoginScreen(),
           SignUpScreen.route_name: (_) => SignUpScreen(),
           HomeScreen.route_name: (_) => HomeScreen(),
+          RestaurantMenu.route_name: (_) => RestaurantMenu(),
         },
       ),
     );

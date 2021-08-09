@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:moko/components/title2.dart';
-import 'package:moko/modules/restaurant/itemWithDetailHorizontal.dart';
-import 'package:moko/modules/restaurant/restartTop.dart';
+
+import 'package:moko/modules/restaurant/restaurantHome/categoryChip.dart';
+import 'package:moko/modules/restaurant/restaurantHome/itemWithDetailHorizontal.dart';
+import 'package:moko/modules/restaurant/restaurantHome/restartTop.dart';
+import 'package:moko/modules/restaurant/restaurantHome/restaurantMenu.dart';
 
 class RestaurantHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(10),
@@ -33,14 +37,20 @@ class RestaurantHome extends StatelessWidget {
             ),
           ),
         ),
+        Title2("WestWay Food Menu"),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Title2("Westway Food Menu"),
+          padding: const EdgeInsets.only(left: 10),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.10,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 5,
+              itemBuilder: (BuildContext context, int item) =>
+                  CategoryChip("Best Seler"),
+            ),
+          ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Title2("Best Seller"),
-        ),
+        Title2("Best Seller"),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: SizedBox(
@@ -58,7 +68,9 @@ class RestaurantHome extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).pushNamed(RestaurantMenu.route_name);
+                },
                 child: Text(
                   "See our menu",
                   style: TextStyle(color: Color.fromRGBO(255, 165, 0, 1)),
