@@ -41,11 +41,17 @@ class RestaurantHome extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Title2("Best Seller"),
         ),
-        // ListView.builder(
-        //   itemCount: 2,
-        //   itemBuilder: (BuildContext context, int item) =>
-        //       ItemDetailHorizontal("assets/images/sample_food.jpeg"),
-        // ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.35,
+            child: ListView.builder(
+              itemCount: 2,
+              itemBuilder: (BuildContext context, int item) =>
+                  ItemDetailHorizontal("assets/images/sample_food.jpeg"),
+            ),
+          ),
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
